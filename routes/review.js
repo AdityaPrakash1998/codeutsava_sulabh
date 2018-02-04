@@ -145,7 +145,6 @@ router.post('/a/:id',function(req,res)
 
           transporter.sendMail(mailOptions,function(err,info)
         {
-          console.log('trying to send');
           if(err)
           console.log(err);
           else {
@@ -191,6 +190,46 @@ router.post('/otpverify',function(req,res)
   }
 });
 
+function sendFeedback(result,sum)
+{
+  var feedback=['Bad and Untidy','Untidy','Well built but not managed','Well built and Clean','Well built and in Excellent condition'];
+  var optionSelected=feedback[sum-1];
+  var data=require('../config/data.js');
+
+  var transporter =nodemailer.createTransport({
+    service:'gmail',
+    auth:{
+        type:'OAuth2',
+        user:'abekh19@gmail.com',
+        clientId:data.clientId,
+        clientSecret:data.clientSecret,
+        refreshToken:data.refreshToken
+    },
+    tls: {
+        rejectUnauthorized: false
+    }
+  });
+
+  var mailOptions={
+    from:'Sulabh <abekh19@gmail.com>',
+    to:'aditya20chandel@gmail.com',
+    subject:`Report from Sulabh about ${result[0].placeName} at ${result[0].placeAddress}`,
+    text:`This mail concerns about the Toilet constructed at ${result[0].placeName} . The average
+    rating is falling and currently is ${sum} out of 5. The feedback is ${optionSelected}.
+    Please take necessary actions`
+  }
+
+  transporter.sendMail(mailOptions,function(err,info)
+{
+  if(err)
+  console.log(err);
+  else {
+    console.log('Sent');
+  }
+});
+
+}
+
 router.get('/view/:id',function(req,res)
 {
   var id=req.params.id;
@@ -212,6 +251,9 @@ router.get('/view/:id',function(req,res)
         for(var i=0;i<result.length;i++)
           sum+=parseInt(result[i].starRating);
         sum=Math.ceil(sum/result.length);
+
+        if(result.length%1000==0 && sum<3)
+          sendFeedback(result,sum);
 
         var rating=[false,false,false,false,false];
         for(var i=0;i<sum;i++){
