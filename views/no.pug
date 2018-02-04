@@ -1,0 +1,19 @@
+extends layout
+block head
+  link(rel='stylesheet', href='/css/jquery.fullPage.css')
+  script(src='http://code.jquery.com/jquery-1.12.4.js', integrity='sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=', crossorigin='anonymous')
+  script(src="/js/jquery.fullPage.js")
+block content
+  div#wrapper
+    div.section
+      img(src="https://static.pexels.com/photos/248797/pexels-photo-248797.jpeg")
+    div.section
+      img(src="https://static.pexels.com/photos/248797/pexels-photo-248797.jpeg")
+    div.section
+      img(src="https://static.pexels.com/photos/248797/pexels-photo-248797.jpeg")
+    div.section
+      img(src="https://static.pexels.com/photos/248797/pexels-photo-248797.jpeg")
+  script.
+    $(document).ready(function(){
+      $('#wrapper').fullpage();
+    });

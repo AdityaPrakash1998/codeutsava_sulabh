@@ -1,0 +1,9 @@
+extends layout
+block content
+  div.container
+    form(action='/review/otpverify', method='post')
+      .form-group.row
+        label.col-sm-2.col-form-label(for='inputOTP') Verify OTP
+        .col-sm-10
+          input#inputOTP.form-control(type='tel', placeholder='$$$$$$',name='OTP')
+      button.btn.btn-primary(type='submit') Verify

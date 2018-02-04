@@ -1,0 +1,25 @@
+{
+  "name": "toilet-review",
+  "version": "1.0.0",
+  "description": "A review system for public toilets",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server"
+  },
+  "author": "Aditya Prakash",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "connect-flash": "^0.1.1",
+    "express": "^4.16.2",
+    "express-messages": "^1.0.1",
+    "express-session": "^1.15.6",
+    "express-validator": "^4.3.0",
+    "mongodb": "^3.0.2",
+    "multer": "^1.3.0",
+    "nodemailer": "^4.4.2",
+    "pug": "^2.0.0-rc.4"
+  }
+}

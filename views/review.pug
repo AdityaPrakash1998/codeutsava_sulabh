@@ -1,0 +1,46 @@
+extends layout
+block head
+  style.
+    #body{
+      background-color:#000000;
+    }
+    label{
+      font-size:25px;
+      color:#ffffff;
+    }
+block content
+  div#body
+    form(action='/review/a/'+id enctype="multipart/form-data", method="POST")
+      .form-group
+        label(for='toiletName') Toilet Name :
+        input#toiletName.form-control(type='text', name='toiletName' value= placeName disabled)
+      .form-group
+        label(for='address') Address :
+        input#address.form-control(type='text' name='address',value= address disabled)
+      .form-group
+        label(for='name') Your Name * :
+        input#address.form-control(type='text' name='name')
+      .form-group
+        label(for='review') Review * :
+        textarea#review.form-control(type='text' name="review" placeholder="Please enter your review here")
+      .form-group
+        label(for="star") Star Rating
+        select.form-control#star(name="star")
+          option(value="1") 1
+          option(value="2") 2
+          option(value="3") 3
+          option(value="4") 4
+          option(value="5") 5
+      if msg!=undefined
+        p= msg
+      
+      .form-group
+        label(for='file') Photo:
+        .col-sm-10
+          input#file.form-control(type='file' name="reviewImage")
+      .form-group
+        label(for='inputEmail') Email * :
+        input#inputEmaile.form-control(type='email', placeholder='Email',name='email')
+        small.text-muted.form-text Email will be verified before saving your review
+      button.btn.btn-default(type='submit') Verify Email and Submit
+    

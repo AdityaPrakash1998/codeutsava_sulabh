@@ -1,0 +1,53 @@
+extends layout
+block head
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+  style.
+    .checked{
+      color:#ffff00;
+      font-size:25px;
+    }
+    #body{
+      background-image:url('/Swachh-Bharat-Diwas.jpg');
+    }
+    .profile{
+      opacity:0.98
+    }
+    span{
+      float:none
+    }
+block content
+  div.container-fluid#body
+    div.container.profile.card
+      br
+      h4= single.placeName
+      h5 Address: #{single.placeAddress}
+      br
+      h4 Average Rating
+      each point, i in rating
+        if rating[i]==true
+          span.fa.fa-star.checked
+        else
+          span.fa.fa-star
+      br
+      h6 Number of Reviews: #{noOfReviews}
+      h4 Feedback based on user Experience:
+      p.btn.btn-danger #{feedback}
+      hr
+    div.container.review
+      each result, i in results
+        br
+        div.card
+          div.card-header Review
+          div.card-block
+            h5.card-title #{result.review}
+            small.text-muted.card-text By: #{result.userName} < #{result.userEmail} >
+            br
+            small.text-muted.card-text Dated: #{result.date.day} / #{result.date.month} / #{result.date.year}  
+            br
+      hr
+      h3.btn.btn-danger Want to add your Review ?
+      br
+      a.btn.btn-primary(href=`/review/${single.placeId}/${single.placeName}/${single.placeAddress}`) Add Review
+      br
+      hr
+      a.btn.btn-primary(href='/') Back to Home
