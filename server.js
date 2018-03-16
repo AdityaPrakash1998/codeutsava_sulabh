@@ -64,4 +64,6 @@ app.get('/',function(req,res)
 let reviewRoute=require('./routes/review');
 app.use('/review',reviewRoute);
 
-app.listen('8080',()=>console.log('Server started at port 8080 !'));
+var port=process.env.PORT || 8080;
+
+app.listen(port,()=>console.log('Server started at port '+port));
